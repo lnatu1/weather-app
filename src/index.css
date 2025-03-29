@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.gradient {
+  background-image: linear-gradient(
+    to right bottom,
+    #595cff,
+    #0093ff,
+    #00bbff,
+    #6adcff,
+    #c6f8ff
+  );
+}
