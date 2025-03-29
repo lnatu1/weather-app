@@ -42,7 +42,7 @@ const getWeather = async (location: string): Promise<WeatherData> => {
       winds: `${classifyWindSpeed(windSpeed)} ${windSpeed} m/s`,
       visibility: `${data.visibility / 1000} km`,
     };
-  } catch (err) {
+  } catch {
     throw new Error("Failed to fetch weather data");
   }
 };
@@ -96,7 +96,7 @@ const get5DayForecast = async (location: string): Promise<Forecasts[]> => {
       .map(([date, forecasts]) => ({ date, forecasts }));
 
     return dailyForecast;
-  } catch (err) {
+  } catch {
     throw new Error("Failed to fetch weather data");
   }
 };
