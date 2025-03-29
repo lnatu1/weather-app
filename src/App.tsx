@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./pages/Home";
+import History from "./pages/History";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,7 @@ function App() {
           <div className="max-w-md mx-auto w-full py-6">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/history" element={<History />} />
             </Routes>
           </div>
         </div>

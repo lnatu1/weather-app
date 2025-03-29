@@ -40,7 +40,7 @@ const getWeather = async (location: string): Promise<WeatherData> => {
       description: data.weather[0].description,
       humidity: `${data.main.humidity}%`,
       winds: `${classifyWindSpeed(windSpeed)} ${windSpeed} m/s`,
-      visibility: `${data.visibility / 1000} km`,
+      visibility: data.visibility ? `${data.visibility / 1000} km` : "N/A",
     };
   } catch {
     throw new Error("Failed to fetch weather data");

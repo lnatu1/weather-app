@@ -2,11 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import { getCountries } from "../api/countries";
 import { CountryData } from "../interfaces/country";
 import { useWeatherStore } from "../store/useWeatherStore";
+import { useNavigate } from "react-router-dom";
 import Card from "./Card";
+import Button from "./Button";
 import SearchHistory from "./SearchHistory";
 
 const Location = () => {
   const { country, setCountry } = useWeatherStore();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [toggleSearch, setToggleSearch] = useState(false);
   const [stopSearch, setStopSearch] = useState(false);
@@ -102,15 +105,16 @@ const Location = () => {
                 )}
               </div>
               <div>
-                <button
-                  className="cursor-pointer bg-blue-600 text-white py-2 px-4 rounded-lg"
-                  onClick={triggerWeatherSearchByLocation}
-                >
-                  Search
-                </button>
+                <Button onClick={triggerWeatherSearchByLocation}>Search</Button>
               </div>
             </div>
 
+            <div className="flex justify-between items-center my-4 p-2">
+              <span className="text-xl font-medium">Search History</span>
+              <Button onClick={() => navigate("/history")}>
+                View full history
+              </Button>
+            </div>
             <SearchHistory />
           </>
         )}
