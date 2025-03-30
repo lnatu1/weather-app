@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getWeather } from "../api/weather";
-import { useWeatherStore } from "../store/useWeatherStore";
+import useWeather from "../hooks/useWeather";
 import Card from "./Card";
 import WeatherSkeleton from "./WeatherSkeleton";
+import ErrorCard from "./ErrorCard";
 
 const WeatherConditionCard = ({
   name,
@@ -20,26 +19,10 @@ const WeatherConditionCard = ({
 };
 
 const TodayForecast = () => {
-  const { country } = useWeatherStore();
-  const {
-    isLoading,
-    error,
-    data: weather,
-  } = useQuery({
-    queryKey: ["todayweather", country],
-    queryFn: () => getWeather(country),
-    enabled: !!country,
-    retry: 1,
-  });
+  const { weather, isLoading, error } = useWeather();
 
   if (error)
-    return (
-      <Card>
-        <p className="text-red-500 font-medium">
-          Failed to get weather data. Please try again
-        </p>
-      </Card>
-    );
+    return <ErrorCard message="Failed to get weather data. Please try again" />;
 
   if (isLoading) return <WeatherSkeleton />;
 

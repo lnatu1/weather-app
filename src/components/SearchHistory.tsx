@@ -13,8 +13,9 @@ const SearchHistory = () => {
   const { setCountry, history, recentHistory, removeHistoryItem } =
     useWeatherStore();
   const location = useLocation();
+  const isHistoryPage = location.pathname === "/history";
 
-  if (history.length === 0 && location.pathname === "/history")
+  if (history.length === 0 && isHistoryPage)
     return (
       <Card>
         <div className="flex items-center justify-between">
@@ -24,8 +25,7 @@ const SearchHistory = () => {
       </Card>
     );
 
-  const displayedHistory =
-    location.pathname === "/" ? recentHistory() : history;
+  const displayedHistory = isHistoryPage ? history : recentHistory();
 
   return (
     <>

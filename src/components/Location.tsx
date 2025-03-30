@@ -110,7 +110,7 @@ const Location = () => {
             </div>
 
             <div className="flex justify-between items-center my-4 p-2">
-              <span className="text-xl font-medium">Search History</span>
+              <span className="sm:text-xl font-medium">Search History</span>
               <Button onClick={() => navigate("/history")}>
                 View full history
               </Button>

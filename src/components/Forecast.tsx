@@ -1,9 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { get5DayForecast } from "../api/weather";
-import { useWeatherStore } from "../store/useWeatherStore";
 import { Forecasts, ForcastItem } from "../interfaces/weather";
-import Card from "./Card";
+import useForecast from "../hooks/useForecast";
 import ForecastSkeleton from "./ForecastSkeleton";
+import Card from "./Card";
+import ErrorCard from "./ErrorCard";
 
 const ForecastTime = ({ item }: { item: ForcastItem }) => {
   return (
@@ -36,26 +35,12 @@ const ForecastCard = ({ forecast }: { forecast: Forecasts }) => {
 };
 
 const TodayForecast = () => {
-  const { country } = useWeatherStore();
-  const {
-    isLoading,
-    error,
-    data: forecast,
-  } = useQuery({
-    queryKey: ["5dayforecast", country],
-    queryFn: () => get5DayForecast(country),
-    enabled: !!country,
-    retry: 1,
-  });
+  const { forecast, error, isLoading } = useForecast();
 
   if (error)
     return (
       <div className="mt-4">
-        <Card>
-          <p className="text-red-500 font-medium">
-            Failed to get weather forecast. Please try again
-          </p>
-        </Card>
+        <ErrorCard message="Failed to get weather forecast. Please try again" />
       </div>
     );
 

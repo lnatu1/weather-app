@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={twMerge(
-        "cursor-pointer text-white py-2 px-4 rounded-lg transition",
+        "cursor-pointer text-white py-2 px-4 rounded-lg transition max-sm:text-sm",
         variantClasses,
         className
       )}

@@ -15,7 +15,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <div className="min-h-screen gradient">
+        <div className="min-h-screen gradient px-4">
           <div className="max-w-md mx-auto w-full py-6">
             <Routes>
               <Route path="/" element={<Home />} />
